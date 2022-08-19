@@ -1,37 +1,32 @@
-import Style from "./style"
-import Button from "../Button"
-import {useContext} from "react"
-import {RepoContext} from "../../providers/repositories-provider"
+import Style from "./style";
+import Button from "../Button";
 
-function ContainerButton(){
-    const {repoActive, setRepoActive} = useContext(RepoContext)
+function ContainerButton({ setRepoActive, repoActive }) {
+  /* function setRepositoriesActive(current) {
+    setRepoActive(current);
+  } */
 
-    function setRepositoriesActive(){
-        setRepoActive({
-            repositories: true,
-            starred: false
-        })
-    }
+  return (
+    <Style.Wrapper>
+      <Style.WrapperButton>
+        <Button
+          name="repositories"
+          text="Repositories"
+          active={repoActive}
+          onClick={() => setRepoActive("repositories")}
+        />
+      </Style.WrapperButton>
 
-    function setStarredActive(){
-        setRepoActive({
-            repositories: false,
-            starred: true
-        })
-    }
-
-    return (
-            <Style.Wrapper>
-                <Style.WrapperButton>
-                    <Button text="Repositories" active={repoActive.repositories} onClick={setRepositoriesActive}/>
-                </Style.WrapperButton>
-
-                <Style.WrapperButton>
-                    <Button text="Starred" active={repoActive.starred} onClick={setStarredActive}/>
-                </Style.WrapperButton>
-
-            </Style.Wrapper>
-    )
+      <Style.WrapperButton>
+        <Button
+          name="starred"
+          text="Starred"
+          active={repoActive}
+          onClick={() => setRepoActive("starred")}
+        />
+      </Style.WrapperButton>
+    </Style.Wrapper>
+  );
 }
 
-export default ContainerButton
+export default ContainerButton;

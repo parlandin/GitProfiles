@@ -1,17 +1,14 @@
 import App from "./App";
 import GithubProvider from "./providers/github-provider";
-import RepositoriesProvider from "./providers/repositories-provider";
-import {ResetCSS} from "./styles/global" 
+import { ResetCSS } from "./styles/global";
 
-function Provider(){
-    return (
-        <GithubProvider>
-            <RepositoriesProvider>
-                <ResetCSS />
-                <App />
-            </RepositoriesProvider>
-        </GithubProvider>
-    )
+function Provider() {
+  return (
+    <GithubProvider>
+      <ResetCSS />
+      <App />
+    </GithubProvider>
+  );
 }
 
 export default Provider;

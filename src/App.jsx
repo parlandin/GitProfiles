@@ -11,6 +11,7 @@ import NoRepos from "./Components/NoRepos";
 
 function App() {
   const { githubState } = useGithub();
+  const [repoActive, setRepoActive] = useState("repositories");
 
   return (
     <Layout>
@@ -20,8 +21,11 @@ function App() {
         !githubState.loading ? (
           <>
             <Profile />
-            <ContainerButton />
-            <Repositories />
+            <ContainerButton
+              setRepoActive={setRepoActive}
+              repoActive={repoActive}
+            />
+            <Repositories repoActive={repoActive} />
           </>
         ) : (
           <Loandig />

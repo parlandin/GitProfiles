@@ -1,11 +1,11 @@
-import Style from "./style"
+import Style from "./style";
 
-function Button({text, onClick, type, active}){
-    return (
-        <Style.Button active={active} onClick={onClick} type={type} >
-            {text}
-        </Style.Button>
-    )
+function Button({ text, onClick, type, active, name }) {
+  return (
+    <Style.Button active={active == name} onClick={onClick} type={type}>
+      {text}
+    </Style.Button>
+  );
 }
 
-export default Button
+export default Button;
