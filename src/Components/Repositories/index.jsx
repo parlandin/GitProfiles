@@ -3,6 +3,7 @@ import Style from "./style";
 import useGithub from "../../hooks/github-hooks";
 import { useState, useEffect } from "react";
 import NoRepos from "../NoRepos";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 function Repositories({ repoActive }) {
   const { getUserRepos, getUserStarred, githubState } = useGithub();
@@ -20,19 +21,30 @@ function Repositories({ repoActive }) {
   return (
     <>
       {hasRepositories ? (
-        <Style.Wrapper>
+        <TransitionGroup component={Style.Wrapper}>
+          <Style.WrapperTitle>
+            <Style.Title>{`Found ${githubState[repoActive].length} ${repoActive}`}</Style.Title>
+          </Style.WrapperTitle>
+
           {githubState[repoActive].map((repositorie) => {
-            const { id, name, full_name, html_url } = repositorie;
+            const { id, name, full_name, html_url, description } = repositorie;
             return (
-              <RepositoriesCard
-                key={id}
-                repoName={name}
-                fullName={full_name}
-                url={html_url}
-              />
+              <CSSTransition key={id} timeout={500} classNames="transition">
+                <RepositoriesCard
+                  key={id}
+                  repoName={name}
+                  fullName={full_name}
+                  url={html_url}
+                  description={
+                    description
+                      ? description
+                      : "this repositorie don´t has a description"
+                  }
+                />
+              </CSSTransition>
             );
           })}
-        </Style.Wrapper>
+        </TransitionGroup>
       ) : (
         <NoRepos text="No Repositories" />
       )}

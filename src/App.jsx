@@ -13,6 +13,8 @@ function App() {
   const { githubState } = useGithub();
   const [repoActive, setRepoActive] = useState("repositories");
 
+  console.log(githubState);
+
   return (
     <Layout>
       <Header />

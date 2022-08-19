@@ -4,9 +4,7 @@ export const ResetCSS = createGlobalStyle`
   /*! destyle.css v2.0.2 | MIT License | https://github.com/nicolas-cusan/destyle.css */
 /* Reset box-model and set borders */
 /* ============================================ */
-*,
-::before,
-::after {
+*{
   box-sizing: border-box;
   border-style: solid;
   border-width: 0;
